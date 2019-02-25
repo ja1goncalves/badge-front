@@ -25,7 +25,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div id="div-badge" class="card-body">
-                                <img id="blah" src="http://placehold.it/600" alt="your image"/>
+                            <img id="blah" src="http://placehold.it/600x800" alt="your image"/>
+                            <a class="text">{{attributes[0].value}}</a>
+                            <a class="text">{{attributes[1].value}}</a>
+                            <a class="text">{{attributes[2].value}}</a>
+                            <a class="text">{{attributes[3].value}}</a>
                         </div>
                     </div>
                     <div class="body col-md-6" style="float: right">
@@ -40,24 +44,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let atributte of atributtes">
+                                        <tr *ngFor="let attribute of attributes">
                                             <td>
-                                                <input id="{{atributte.title}}-buttuon" placeholder="{{atributte.title}}" class="form-control" maxlength="25">
+                                                <input id="{{attribute.title}}-buttuon" (change)="setValue(attribute.name)" placeholder="{{attribute.title}}" class="form-control" maxlength="25">
                                             </td>
                                             <td>
-                                                    <button id="{{atributte.title}}-rigth" class="btn btn-primary btn-custom">→</button> 
-                                                    <button id="{{atributte.title}}-left" class="btn btn-primary btn-custom">←</button>
-                                                    <button id="{{atributte.title}}-down" class="btn btn-primary btn-custom">↓</button>
-                                                    <button id="{{atributte.title}}-top" class="btn btn-primary btn-custom">↑</button>
+                                                    <button id="{{attribute.title}}-rigth" (change)="moveRight(attribute.name)" class="btn btn-primary btn-custom">→</button> 
+                                                    <button id="{{attribute.title}}-left" (change)="moveLeft(attribute.name)" class="btn btn-primary btn-custom">←</button>
+                                                    <button id="{{attribute.title}}-down" (change)="moveDown(attribute.name)" class="btn btn-primary btn-custom">↓</button>
+                                                    <button id="{{attribute.title}}-top" (change)="moveTop(attribute.name)" class="btn btn-primary btn-custom">↑</button>
                                             <td>
-                                                <button id="{{atributte.title}}-size_max" class="btn btn-primary btn-custom">A+</button> 
-                                                <button id="{{atributte.title}}-size_min" class="btn btn-primary btn-custom">a-</button>
-                                            </td>
-                                            <td style="text-align: center">
-                                                <input type="checkbox" value="{{atributte.negrito}}" class="checkmark">
+                                                <button id="{{attribute.title}}-size_max" (change)="increaseFontSize(attribute.name)" class="btn btn-primary btn-custom">A+</button> 
+                                                <button id="{{attribute.title}}-size_min" (change)="decreaseFontSize(attribute.name)" class="btn btn-primary btn-custom">a-</button>
                                             </td>
                                             <td style="text-align: center">
-                                                <input type="checkbox" value="{{atributte.italico}}" class="checkmark">
+                                                <input type="checkbox" (change)="setNegrito(attribute.name)" value="{{attribute.negrito}}" class="checkmark">
+                                            </td>
+                                            <td style="text-align: center">
+                                                <input type="checkbox" (change)="setItalico(attribute.name)" value="{{attribute.italico}}" class="checkmark">
                                             </td>
                                         </tr>
                                     </tbody>

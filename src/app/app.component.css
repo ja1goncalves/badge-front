@@ -1,4 +1,7 @@
 img{
+    position: relative;
+    margin-left:-10px;
+    margin-top:-10px;
     max-width:600px;
 }
 
@@ -13,6 +16,12 @@ input[type=file]{
     position: absolute;
 }
 
+.text{
+    margin-left:auto;
+    margin-right:auto;
+    margin: 0;
+    padding: 0;
+}
 .title{
     position: relative;
     margin-left:auto;
@@ -83,4 +92,5 @@ input[type=file]{
 #div-badge{
     position: relative;
     border-style: dotted;
+    width: 85%;
 }
