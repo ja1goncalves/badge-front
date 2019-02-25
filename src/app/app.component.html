@@ -14,7 +14,8 @@
                             class= "btn btn-primary"
                             label= false
                             id= "layout-badge"
-                            div= false,
+                            div= false
+                            (change)="getImageBadge();"
                             style="display: none;">
                 </div>
             </div>
@@ -24,7 +25,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div id="div-badge" class="card-body">
-
+                                <img id="blah" src="http://placehold.it/600" alt="your image"/>
                         </div>
                     </div>
                     <div class="body col-md-6" style="float: right">
