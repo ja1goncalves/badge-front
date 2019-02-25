@@ -1,0 +1,79 @@
+<div class="main">
+    <div id="create-model">
+        <div class="content title">
+                <p>1 - Criar Modelo</p>
+        </div>
+        <div class="content body">
+            <div class="row col-md-6">
+                <a href="https://blog.even3.com.br/crachas-para-eventos-academicos/" target="_blank" style="font-size:25px;">Dica: Templates</a>
+                <div class="form-group col-md-6">
+                    <label class="btn btn-primary" for="layout-badge" type="file">Layout do crachá&hellip;</label>
+                    <span class="upload"></span>
+                    <input  type= "file"
+                            accept="image/*"
+                            class= "btn btn-primary"
+                            label= false
+                            id= "layout-badge"
+                            div= false,
+                            style="display: none;">
+                </div>
+            </div>
+        </div>
+        <div class="row col-md-12">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="div-badge" class="card-body">
+
+                        </div>
+                    </div>
+                    <div class="body col-md-6" style="float: right">
+                            <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Atributo</th>
+                                            <th>Movimentação</th>
+                                            <th>Tamanho</th>
+                                            <th>Negrito</th>
+                                            <th>Italico</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let atributte of atributtes">
+                                            <td>
+                                                <input id="{{atributte.title}}-buttuon" placeholder="{{atributte.title}}" class="form-control">
+                                            </td>
+                                            <td>
+                                                    <button id="{{atributte.title}}-rigth" class="btn btn-primary btn-custom">→</button> 
+                                                    <button id="{{atributte.title}}-left" class="btn btn-primary btn-custom">←</button>
+                                                    <button id="{{atributte.title}}-down" class="btn btn-primary btn-custom">↓</button>
+                                                    <button id="{{atributte.title}}-top" class="btn btn-primary btn-custom">↑</button>
+                                            <td>
+                                                <button id="{{atributte.title}}-size_max" class="btn btn-primary btn-custom">A+</button> 
+                                                <button id="{{atributte.title}}-size_min" class="btn btn-primary btn-custom">a-</button>
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" value="{{atributte.negrito}}" class="checkmark">
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" value="{{atributte.italico}}" class="checkmark">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="import-participants">
+        <div class="content title">
+            <p>2 - Importar Participantes</p>
+        </div>
+        <div class="form-group">
+            <label for="participants">Copie o conteúdo da planilha excel, incluindo os cabeçalhos e cole aqui:</label>
+            <textarea class="form-control" rows="5" id="participants" style="width: 70%;"></textarea>
+        </div>
+        <button id="download" title="download"> Baixar crachás</button>
+    </div>
+</div>
