@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-personalize-badge',
@@ -10,8 +11,9 @@ export class PersonalizeBadgeComponent implements OnInit {
 
   layout: File;
   attributes = [];
+  participants: string;
 
-  constructor() { 
+  constructor(private http: HttpClient) { 
     this.attributes = [
       {
         title: "Nome",
@@ -146,6 +148,26 @@ export class PersonalizeBadgeComponent implements OnInit {
     var number = this.getAttribute(name);
     const input = document.getElementById(this.attributes[number].title + "-input") as HTMLInputElement;
     this.attributes[number].value = input.value;
+  }
+
+  public download(){
+    const participants = document.getElementById("participants") as HTMLInputElement;
+    this.participants = participants.value;
+    this.getBadges();
+  }
+
+  private getBadges(){
+    const body = {
+      participants: this.participants,
+      details_badge: this.attributes,
+      layout: this.layout
+    };
+
+    //rota do back-end com a rota do método
+    this.http.post('localhost:8000/badges/getDownload', body)
+    .subscribe((data) => {
+      console.log(body)
+    });
   }
 
   private getAttribute(name){
