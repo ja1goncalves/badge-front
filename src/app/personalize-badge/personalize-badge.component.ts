@@ -20,8 +20,8 @@ export class PersonalizeBadgeComponent implements OnInit {
         negrito: false,
         italico: false,
         size: 30,
-        left: 50,
-        top: -790,
+        left: 0,
+        top: -400,
       },
       {
         title: "Instituição",
@@ -30,8 +30,8 @@ export class PersonalizeBadgeComponent implements OnInit {
         negrito: false,
         italico: false,
         size: 15,
-        left: 50,
-        top: 120,
+        left: 0,
+        top: -270,
       },
       {
         title: "Inscrição",
@@ -40,8 +40,8 @@ export class PersonalizeBadgeComponent implements OnInit {
         negrito: false,
         italico: false,
         size: 20,
-        left: 50,
-        top: 130,
+        left: 0,
+        top: -350,
       },
       {
         title: "Categoria",
@@ -50,8 +50,8 @@ export class PersonalizeBadgeComponent implements OnInit {
         negrito: false,
         italico: false,
         size: 15,
-        left: 50,
-        top: 140,
+        left: 0,
+        top: -310,
       }
     ];
   }
@@ -129,14 +129,22 @@ export class PersonalizeBadgeComponent implements OnInit {
   public getStyleAttribute(name){
     var number = this.getAttribute(name);
     const attribute = this.attributes[number];
+
     const bold = attribute.negrito ? "font-weight: bold; " : "";
     const italic = attribute.italico ? "font-style: italic; " : ""; 
-    return "left: "+attribute.left+"px; top: "+attribute.top+"px; font-size: "+attribute.size+"px; "+bold+italic;
+    const style: string = "position: relative; " + 
+                          "left: "+attribute.left+"%; "+
+                          "top: "+attribute.top+"px; "+
+                          "font-size: "+attribute.size+"px; "
+                          +bold+italic+"";
+
+    const text = document.getElementById("text-" + this.attributes[number].name) as HTMLInputElement;
+    text.setAttribute('style', style);
   }
 
   public setValue(name){
     var number = this.getAttribute(name);
-    const input = document.getElementById(this.attributes[number].title + "-buttuon") as HTMLInputElement;
+    const input = document.getElementById(this.attributes[number].title + "-input") as HTMLInputElement;
     this.attributes[number].value = input.value;
   }
 
@@ -155,7 +163,7 @@ export class PersonalizeBadgeComponent implements OnInit {
   }
 
   private isLimitLeft(left){
-    return (left == 5 || left == 590) ? true : false;
+    return (left <= -40 || left >= 30) ? true : false;
   }
 
   private isLimitTop(top){
