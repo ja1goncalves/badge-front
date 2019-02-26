@@ -30,7 +30,7 @@ export class PersonalizeBadgeComponent implements OnInit {
       },
       {
         title: "Instituição",
-        name: "instituition",
+        name: "institution",
         value: '',
         negrito: false,
         italico: false,
@@ -175,7 +175,7 @@ export class PersonalizeBadgeComponent implements OnInit {
   private getAttribute(name){
     switch(name){
       case 'name': return 0;
-      case 'instituition': return 1;
+      case 'institution': return 1;
       case 'subscription': return 2;
       case 'category': return 3;
     }
