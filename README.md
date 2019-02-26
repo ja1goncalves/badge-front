@@ -2,6 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.3.
 
+##Instalation
+
+`sudo npm install`
+`sudo npm i @angular/cli -g`
+`sudo npm install popper.js@^1.14.7`
+`sudo npm install jquery --save`
+`sudo npm install bootstrap`
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
