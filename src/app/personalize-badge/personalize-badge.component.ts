@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import * as $ from 'jquery';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { MessageInfoComponent } from '../message-info/message-info.component';
+import { BadgesService } from '../services/badges.service';
 
 @Component({
   selector: 'app-personalize-badge',
@@ -9,11 +11,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PersonalizeBadgeComponent implements OnInit {
 
-  layout: File;
-  attributes = [];
-  participants: string;
+  @ViewChild(MessageInfoComponent) errorMsgComponent: MessageInfoComponent;
+  private layout: File;
+  private attributes = [];
+  private participants: string;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private service: BadgesService) { 
     this.attributes = [
       {
         title: "Nome",
@@ -23,7 +26,7 @@ export class PersonalizeBadgeComponent implements OnInit {
         italico: false,
         size: 30,
         left: 0,
-        top: -400,
+        top: -400
       },
       {
         title: "Instituição",
@@ -33,7 +36,7 @@ export class PersonalizeBadgeComponent implements OnInit {
         italico: false,
         size: 15,
         left: 0,
-        top: -270,
+        top: -270
       },
       {
         title: "Inscrição",
@@ -43,7 +46,7 @@ export class PersonalizeBadgeComponent implements OnInit {
         italico: false,
         size: 20,
         left: 0,
-        top: -350,
+        top: -350
       },
       {
         title: "Categoria",
@@ -53,7 +56,7 @@ export class PersonalizeBadgeComponent implements OnInit {
         italico: false,
         size: 15,
         left: 0,
-        top: -310,
+        top: -310
       }
     ];
   }
@@ -163,11 +166,10 @@ export class PersonalizeBadgeComponent implements OnInit {
       layout: this.layout
     };
 
-    //rota do back-end com a rota do método
-    this.http.post('localhost:8000/badges/getDownload', body)
-    .subscribe((data) => {
-      console.log(body)
-    });
+    this.service.getBadgesDownload(body)
+    .subscribe((response) => {
+      console.log(response);
+    }/*, () => { this.errorMsgComponent.setError('Falha ao deletar lembrete.'); }*/);
   }
 
   private getAttribute(name){
