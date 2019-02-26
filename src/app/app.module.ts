@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PersonalizeBadgeComponent } from './personalize-badge/personalize-badge.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    PersonalizeBadgeComponent,
   ],
   imports: [
     BrowserModule,

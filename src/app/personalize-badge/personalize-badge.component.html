@@ -1,0 +1,84 @@
+<div class="main">
+    <div id="create-model">
+        <div class="title">
+                <p>1 - Criar Modelo</p>
+        </div>
+        <div class="content body">
+            <div class="row col-md-6">
+                <a href="https://blog.even3.com.br/crachas-para-eventos-academicos/" target="_blank" style="font-size:25px;">Dica: Templates</a>
+                <div class="form-group col-md-6">
+                    <label class="btn btn-primary" for="layout-badge" type="file">Layout do crachá&hellip;</label>
+                    <span class="upload"></span>
+                    <input  type= "file"
+                            accept="image/*"
+                            class= "btn btn-primary"
+                            label= false
+                            id= "layout-badge"
+                            div= false
+                            (change)="getImageBadge();"
+                            style="display: none;">
+                </div>
+            </div>
+        </div>
+        <div class="row col-md-12">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="div-badge" class="card-body">
+                            <img id="blah" src="http://placehold.it/600x800" alt="your image"/>
+                            <a class="text">{{attributes[0].value}}</a>
+                            <a class="text">{{attributes[1].value}}</a>
+                            <a class="text">{{attributes[2].value}}</a>
+                            <a class="text">{{attributes[3].value}}</a>
+                        </div>
+                    </div>
+                    <div class="body col-md-6" style="float: right">
+                            <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Atributo</th>
+                                            <th>Movimentação</th>
+                                            <th>Tamanho</th>
+                                            <th>Negrito</th>
+                                            <th>Italico</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let attribute of attributes">
+                                            <td>
+                                                <input id="{{attribute.title}}-buttuon" (change)="setValue(attribute.name)" placeholder="{{attribute.title}}" class="form-control" maxlength="25">
+                                            </td>
+                                            <td>
+                                                    <button id="{{attribute.title}}-rigth" (change)="moveRight(attribute.name)" class="btn btn-primary btn-custom">→</button> 
+                                                    <button id="{{attribute.title}}-left" (change)="moveLeft(attribute.name)" class="btn btn-primary btn-custom">←</button>
+                                                    <button id="{{attribute.title}}-down" (change)="moveDown(attribute.name)" class="btn btn-primary btn-custom">↓</button>
+                                                    <button id="{{attribute.title}}-top" (change)="moveTop(attribute.name)" class="btn btn-primary btn-custom">↑</button>
+                                            <td>
+                                                <button id="{{attribute.title}}-size_max" (change)="increaseFontSize(attribute.name)" class="btn btn-primary btn-custom">A+</button> 
+                                                <button id="{{attribute.title}}-size_min" (change)="decreaseFontSize(attribute.name)" class="btn btn-primary btn-custom">a-</button>
+                                            </td>
+                                            <td style="text-align: center">
+                                                <input type="checkbox" (change)="setNegrito(attribute.name)" value="{{attribute.negrito}}" class="checkmark">
+                                            </td>
+                                            <td style="text-align: center">
+                                                <input type="checkbox" (change)="setItalico(attribute.name)" value="{{attribute.italico}}" class="checkmark">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="import-participants">
+        <div class="title">
+            <p>2 - Importar Participantes</p>
+        </div>
+        <div class="form-group textarea">
+            <label for="participants">Copie o conteúdo da planilha excel, incluindo os cabeçalhos e cole aqui:</label>
+            <textarea class="form-control" rows="5" id="participants" style="width: 70%;"></textarea>
+            <button id="download" class="btn btn-primary" title="download"> Baixar crachás</button>
+        </div>
+    </div>
+</div>
