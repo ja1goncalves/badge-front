@@ -138,8 +138,7 @@ export class PersonalizeBadgeComponent implements OnInit {
 
     const bold = attribute.negrito ? "font-weight: bold; " : "";
     const italic = attribute.italico ? "font-style: italic; " : ""; 
-    const style: string = "position: relative; " + 
-                          "left: "+attribute.left+"%; "+
+    const style: string = "left: "+attribute.left+"%; "+
                           "top: "+attribute.top+"px; "+
                           "font-size: "+attribute.size+"px; "
                           +bold+italic+"";
