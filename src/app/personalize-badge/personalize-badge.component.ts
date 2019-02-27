@@ -12,7 +12,7 @@ import { BadgesService } from '../services/badges.service';
 export class PersonalizeBadgeComponent implements OnInit {
 
   @ViewChild(MessageInfoComponent) errorMsgComponent: MessageInfoComponent;
-  private layout: File;
+  private layout;
   private attributes = [];
   private participants: string;
 
@@ -162,8 +162,13 @@ export class PersonalizeBadgeComponent implements OnInit {
   private getBadges(){
     const body = {
       participants: this.participants,
-      details_badge: this.attributes,
-      layout: this.layout
+      style_attributes: {
+        name: $('#text-name').attr('style'),
+        institution: $('#text-institution').attr('style'),
+        subscription: $('#text-subscription').attr('style'),
+        category: $('#text-category').attr('style')
+      },
+      layout: $('#img-badge').attr('src')
     };
 
     this.service.getBadgesDownload(body)
@@ -187,10 +192,10 @@ export class PersonalizeBadgeComponent implements OnInit {
   }
 
   private isLimitLeft(left){
-    return (left <= -40 || left >= 30) ? true : false;
+    return (left <= -30 || left >= 30) ? true : false;
   }
 
   private isLimitTop(top){
-    return (top == 5 || top == 790) ? true : false;
+    return (top <= -800 || top >= -50) ? true : false;
   }
 }
