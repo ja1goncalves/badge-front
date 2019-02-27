@@ -3,7 +3,7 @@ import * as $ from 'jquery';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageInfoComponent } from '../message-info/message-info.component';
 import { BadgesService } from '../services/badges.service';
-import { saveAs } from 'node_modules/file-saver';
+// import { saveAs } from 'node_modules/file-saver';
 
 @Component({
   selector: 'app-personalize-badge',
@@ -73,7 +73,7 @@ export class PersonalizeBadgeComponent implements OnInit {
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        $('#img-badge').attr('src', e.target.result);
+        // $('#img-badge').attr('src', e.target.result);
       };
 
       reader.readAsDataURL(input.files[0]);
