@@ -3,7 +3,7 @@ import * as $ from 'jquery';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageInfoComponent } from '../message-info/message-info.component';
 import { BadgesService } from '../services/badges.service';
-// import { saveAs } from 'node_modules/file-saver';
+import { saveAs } from 'node_modules/file-saver';
 
 @Component({
   selector: 'app-personalize-badge',
@@ -73,7 +73,7 @@ export class PersonalizeBadgeComponent implements OnInit {
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        // $('#img-badge').attr('src', e.target.result);
+        $('#img-badge').attr('src', e.target.result);
       };
 
       reader.readAsDataURL(input.files[0]);
@@ -132,19 +132,37 @@ export class PersonalizeBadgeComponent implements OnInit {
     }
   }
 
-  public getStyleAttribute(name){
+  public getStyleAttribute(name, isForRequest = false){
     var number = this.getAttribute(name);
     const attribute = this.attributes[number];
 
     const bold = attribute.negrito ? "font-weight: bold; " : "";
-    const italic = attribute.italico ? "font-style: italic; " : ""; 
-    const style: string = "left: "+attribute.left+"%; "+
-                          "top: "+attribute.top+"px; "+
-                          "font-size: "+attribute.size+"px; "
-                          +bold+italic+"";
+    const italic = attribute.italico ? "font-style: italic; " : "";
+    var style = '';
 
-    const text = document.getElementById("text-" + this.attributes[number].name) as HTMLInputElement;
-    text.setAttribute('style', style);
+    if(isForRequest){
+      var delta_top = 0;
+
+      switch(name){
+        case 'name': delta_top = 0;
+        case 'institution': delta_top = 0;
+        case 'subscription': delta_top = 290;
+        case 'category': delta_top = 280;
+      }
+      console.log(name + " " + (attribute.top - delta_top));
+      return style = "left: "+attribute.left+"%; "+
+              "top: "+(attribute.top - delta_top)+"px; "+
+              "font-size: "+(attribute.size + 7)+"px; "
+              +bold+italic+"";
+    }else{
+      style = "left: "+attribute.left+"%; "+
+              "top: "+attribute.top+"px; "+
+              "font-size: "+attribute.size+"px; "
+              +bold+italic+"";
+
+      const text = document.getElementById("text-" + this.attributes[number].name) as HTMLInputElement;
+      text.setAttribute('style', style);
+    }
   }
 
   public setValue(name){
@@ -163,10 +181,10 @@ export class PersonalizeBadgeComponent implements OnInit {
     const body = {
       participants: this.participants,
       style_attributes: {
-        name: $('#text-name').attr('style'),
-        institution: $('#text-institution').attr('style'),
-        subscription: $('#text-subscription').attr('style'),
-        category: $('#text-category').attr('style')
+        name: this.getStyleAttribute('name', true),
+        institution: this.getStyleAttribute('institution', true),
+        subscription: this.getStyleAttribute('subscription', true),
+        category: this.getStyleAttribute('category', true)
       },
       layout: $('#img-badge').attr('src')
     };

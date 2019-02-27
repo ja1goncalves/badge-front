@@ -18,7 +18,7 @@ input[type=file]{
 
 .text{
     position: relative;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: serif;
     margin-left:auto;
     margin-right:auto;
     margin: 0;
