@@ -144,12 +144,13 @@ export class PersonalizeBadgeComponent implements OnInit {
       var delta_top = 0;
 
       switch(name){
-        case 'name': delta_top = 0;
-        case 'institution': delta_top = 0;
+        case 'name': delta_top = 100;
+        case 'institution': delta_top = 150;
         case 'subscription': delta_top = 290;
         case 'category': delta_top = 280;
+        default: delta_top = 0;
       }
-      console.log(name + " " + (attribute.top - delta_top));
+
       return style = "left: "+attribute.left+"%; "+
               "top: "+(attribute.top - delta_top)+"px; "+
               "font-size: "+(attribute.size + 7)+"px; "
