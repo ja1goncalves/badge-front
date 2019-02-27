@@ -3,6 +3,7 @@ import * as $ from 'jquery';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageInfoComponent } from '../message-info/message-info.component';
 import { BadgesService } from '../services/badges.service';
+import { saveAs } from 'node_modules/file-saver';
 
 @Component({
   selector: 'app-personalize-badge',
@@ -172,9 +173,12 @@ export class PersonalizeBadgeComponent implements OnInit {
     };
 
     this.service.getBadgesDownload(body)
-    .subscribe((response) => {
-      console.log(response);
-    }/*, () => { this.errorMsgComponent.setError('Falha ao deletar lembrete.'); }*/);
+    .then((response) => {
+      const file = new Blob([response], {type: 'application/pdf'});
+      const filename = `crachas.pdf`;
+
+      saveAs(file, filename);
+    });
   }
 
   private getAttribute(name){

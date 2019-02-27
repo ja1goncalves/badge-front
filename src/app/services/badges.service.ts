@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,8 +10,12 @@ export class BadgesService {
 
   constructor(private http: HttpClient) { }
 
-  getBadgesDownload(body): Observable<JSON> {
+  public getBadgesDownload(body): Promise<any> {
     const url = `${environment.getPdfsBadges}`;
-    return this.http.post<JSON>(url, body);
+
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/pdf');
+
+    return this.http.post(url, body,  {headers, responseType: 'blob' as 'json'}).toPromise();
   };
 }
