@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
  
 @Component({
   selector: 'app-error-msg',
@@ -6,9 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./message-info.component.css']
 })
 
-export class MessageInfoComponent {
+export class MessageInfoComponent implements OnInit {
   public error: string;
- 
+
+  ngOnInit(): void {
+  }
+
   public setError(error: string = "Algo de errado não está certo", tempo: number = 5000) {
     this.error = error;
     setTimeout(() => {

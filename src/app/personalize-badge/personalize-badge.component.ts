@@ -17,7 +17,7 @@ export class PersonalizeBadgeComponent implements OnInit {
   private attributes = [];
   private participants: string;
 
-  constructor(private http: HttpClient, private service: BadgesService) { 
+  constructor(private http: HttpClient, private service: BadgesService) {
     this.attributes = [
       {
         title: "Nome",
@@ -196,6 +196,8 @@ export class PersonalizeBadgeComponent implements OnInit {
       const filename = `crachas.pdf`;
 
       saveAs(file, filename);
+    }, (response) => {
+      this.errorMsgComponent.setError(response.message ? response.message : "Algo de errado não está certo!");
     });
   }
 
