@@ -197,7 +197,7 @@ export class PersonalizeBadgeComponent implements OnInit {
 
       saveAs(file, filename);
     }, (response) => {
-      this.errorMsgComponent.setError(response.message ? response.message : "Algo de errado não está certo!");
+      this.alerts.setMessage('All the fields are required','error');
     });
   }
 

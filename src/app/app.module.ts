@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PersonalizeBadgeComponent } from './personalize-badge/personalize-badge.component';
 import { MessageInfoComponent } from './message-info/message-info.component';
+import { AlertsModule } from 'angular-alert-module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MessageInfoComponent } from './message-info/message-info.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AlertsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
