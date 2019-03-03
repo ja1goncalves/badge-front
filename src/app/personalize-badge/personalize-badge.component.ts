@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageInfoComponent } from '../message-info/message-info.component';
 import { BadgesService } from '../services/badges.service';
 import { saveAs } from 'node_modules/file-saver';
+import { AlertsService } from 'angular-alert-module';
 
 @Component({
   selector: 'app-personalize-badge',
@@ -19,7 +20,7 @@ export class PersonalizeBadgeComponent implements OnInit {
   private paperSize: string;
   private processRequest: boolean;
 
-  constructor(private http: HttpClient, private service: BadgesService) {
+  constructor(private http: HttpClient, private service: BadgesService, private alerts: AlertsService) {
     this.processRequest = false;
     this.attributes = [
       {
@@ -66,6 +67,8 @@ export class PersonalizeBadgeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.alerts.setDefaults('timeout', 5000);
+    this.alerts.setConfig('warn', 'icon', 'warning');
   }
 
   public getImageBadge(){
