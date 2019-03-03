@@ -16,6 +16,7 @@ export class PersonalizeBadgeComponent implements OnInit {
   private layout;
   private attributes = [];
   private participants: string;
+  private paperSize: string;
 
   constructor(private http: HttpClient, private service: BadgesService) {
     this.attributes = [
@@ -175,6 +176,8 @@ export class PersonalizeBadgeComponent implements OnInit {
   public download(){
     const participants = document.getElementById("participants") as HTMLInputElement;
     this.participants = participants.value;
+
+    this.paperSize = $('#sell').val();
     this.getBadges();
   }
 
@@ -187,7 +190,8 @@ export class PersonalizeBadgeComponent implements OnInit {
         subscription: this.getStyleAttribute('subscription', true),
         category: this.getStyleAttribute('category', true)
       },
-      layout: $('#img-badge').attr('src')
+      layout: $('#img-badge').attr('src'),
+      paper: this.paperSize
     };
 
     this.service.getBadgesDownload(body)
