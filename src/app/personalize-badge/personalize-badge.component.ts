@@ -18,8 +18,10 @@ export class PersonalizeBadgeComponent implements OnInit {
   private attributes = [];
   private participants: string;
   private paperSize: string;
+  private processRequest: boolean;
 
   constructor(private http: HttpClient, private service: BadgesService, private alerts: AlertsService) {
+    this.processRequest = true;
     this.attributes = [
       {
         title: "Nome",
@@ -69,6 +71,7 @@ export class PersonalizeBadgeComponent implements OnInit {
   }
 
   public getImageBadge(){
+    this.processRequest = false;
     const input = document.getElementById("layout-badge") as HTMLInputElement;
     this.layout = input.files[0];
 
@@ -176,11 +179,13 @@ export class PersonalizeBadgeComponent implements OnInit {
   }
 
   public download(){
+    this.processRequest = true;
     const participants = document.getElementById("participants") as HTMLInputElement;
     this.participants = participants.value;
 
     this.paperSize = $('#sell').val();
     this.getBadges();
+    this.processRequest = false;
   }
 
   private getBadges(){
