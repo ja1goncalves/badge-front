@@ -17,8 +17,10 @@ export class PersonalizeBadgeComponent implements OnInit {
   private attributes = [];
   private participants: string;
   private paperSize: string;
+  private processRequest: boolean;
 
   constructor(private http: HttpClient, private service: BadgesService) {
+    this.processRequest = false;
     this.attributes = [
       {
         title: "Nome",
@@ -174,11 +176,15 @@ export class PersonalizeBadgeComponent implements OnInit {
   }
 
   public download(){
+    this.processRequest = true;
+
     const participants = document.getElementById("participants") as HTMLInputElement;
     this.participants = participants.value;
 
     this.paperSize = $('#sell').val();
     this.getBadges();
+
+    this.processRequest = false;
   }
 
   private getBadges(){

@@ -87,7 +87,7 @@
         <div class="form-group textarea">
             <label for="participants">Copie o conteúdo da planilha excel, incluindo os cabeçalhos e cole aqui:</label>
             <textarea class="form-control" rows="5" id="participants" style="width: 70%;"></textarea>
-            <button id="download" class="btn btn-primary" title="download" (click)="download()"> Baixar crachás</button>
+            <button id="download" class="btn btn-primary" title="download" [disabled]="processRequest" (click)="download()"> Baixar crachás</button>
         </div>
     </div>
 </div>
