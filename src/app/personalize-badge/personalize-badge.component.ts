@@ -18,10 +18,8 @@ export class PersonalizeBadgeComponent implements OnInit {
   private attributes = [];
   private participants: string;
   private paperSize: string;
-  private processRequest: boolean;
 
   constructor(private http: HttpClient, private service: BadgesService, private alerts: AlertsService) {
-    this.processRequest = false;
     this.attributes = [
       {
         title: "Nome",
@@ -68,7 +66,6 @@ export class PersonalizeBadgeComponent implements OnInit {
 
   ngOnInit() {
     this.alerts.setDefaults('timeout', 5000);
-    this.alerts.setConfig('warn', 'icon', 'warning');
   }
 
   public getImageBadge(){
@@ -179,15 +176,11 @@ export class PersonalizeBadgeComponent implements OnInit {
   }
 
   public download(){
-    this.processRequest = true;
-
     const participants = document.getElementById("participants") as HTMLInputElement;
     this.participants = participants.value;
 
     this.paperSize = $('#sell').val();
     this.getBadges();
-
-    this.processRequest = false;
   }
 
   private getBadges(){
@@ -207,8 +200,9 @@ export class PersonalizeBadgeComponent implements OnInit {
     .then((response) => {
       const file = new Blob([response], {type: 'application/pdf'});
       const filename = `crachas.pdf`;
-
       saveAs(file, filename);
+
+      this.alerts.setMessage('All the fields are required','success');
     }, (response) => {
       this.alerts.setMessage('All the fields are required','error');
     });
