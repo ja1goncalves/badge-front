@@ -186,7 +186,6 @@ export class PersonalizeBadgeComponent implements OnInit {
 
     this.paperSize = $('#sell').val();
     this.getBadges();
-    this.processRequest = false;
   }
 
   private getBadges(){
@@ -207,10 +206,11 @@ export class PersonalizeBadgeComponent implements OnInit {
       const file = new Blob([response], {type: 'application/pdf'});
       const filename = `crachas.pdf`;
       saveAs(file, filename);
+      this.processRequest = false;
     }, (response) => {
-      console.log(response);
-      const message: string = response.error && response.error.message ? response.error.message : "Algo de erradp não esta certo";
+      const message: string = response.error && response.error.message ? response.error.message : "Algo de errado não esta certo";
       this.notifier.notify('error', message);
+      this.processRequest = false;
     });
   }
 

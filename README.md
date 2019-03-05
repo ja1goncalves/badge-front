@@ -10,6 +10,7 @@ sudo npm i @angular/cli -g
 sudo npm install popper.js@^1.14.7
 sudo npm install jquery --save
 sudo npm install bootstrap
+sudo npm install angular-alert-module
 ```
 ## Development server
 
