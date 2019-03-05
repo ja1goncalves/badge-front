@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageInfoComponent } from '../message-info/message-info.component';
 import { BadgesService } from '../services/badges.service';
 import { saveAs } from 'node_modules/file-saver';
-import { AlertsService } from 'angular-alert-module';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-personalize-badge',
@@ -19,9 +19,11 @@ export class PersonalizeBadgeComponent implements OnInit {
   private participants: string;
   private paperSize: string;
   private processRequest: boolean;
+  private readonly notifier: NotifierService;
 
-  constructor(private http: HttpClient, private service: BadgesService, private alerts: AlertsService) {
+  constructor(private http: HttpClient, private service: BadgesService, private notifierService: NotifierService) {
     this.processRequest = true;
+    this.notifier = notifierService;
     this.attributes = [
       {
         title: "Nome",
@@ -67,7 +69,6 @@ export class PersonalizeBadgeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.alerts.setDefaults('timeout', 5000);
   }
 
   public getImageBadge(){
@@ -206,10 +207,10 @@ export class PersonalizeBadgeComponent implements OnInit {
       const file = new Blob([response], {type: 'application/pdf'});
       const filename = `crachas.pdf`;
       saveAs(file, filename);
-
-      this.alerts.setMessage('All the fields are required','success');
     }, (response) => {
-      this.alerts.setMessage('All the fields are required','error');
+      console.log(response);
+      const message: string = response.error && response.error.message ? response.error.message : "Algo de erradp não esta certo";
+      this.notifier.notify('error', message);
     });
   }
 

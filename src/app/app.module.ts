@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { PersonalizeBadgeComponent } from './personalize-badge/personalize-badge.component';
 import { MessageInfoComponent } from './message-info/message-info.component';
 import { AlertsModule } from 'angular-alert-module';
+import { NotifierModule } from 'angular-notifier';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AlertsModule } from 'angular-alert-module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NotifierModule,
     AlertsModule.forRoot()
   ],
   providers: [],

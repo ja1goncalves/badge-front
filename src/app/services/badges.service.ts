@@ -14,8 +14,8 @@ export class BadgesService {
     const url = `${environment.getPdfsBadges}`;
 
     let headers = new HttpHeaders();
-    headers = headers.set('Accept', 'application/pdf');
+    headers = headers.set('Accept', ['application/pdf', 'application/json']);
 
-    return this.http.post(url, body,  {headers, responseType: 'blob' as 'json'}).toPromise();
+    return this.http.post(url, body,  {headers}).toPromise();
   };
 }
