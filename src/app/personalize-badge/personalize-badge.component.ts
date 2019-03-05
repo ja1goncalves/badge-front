@@ -151,10 +151,10 @@ export class PersonalizeBadgeComponent implements OnInit {
       var delta_top = 0;
 
       switch(name){
-        case 'name': delta_top = 100;
-        case 'institution': delta_top = 150;
-        case 'subscription': delta_top = 290;
-        case 'category': delta_top = 280;
+        case 'name': delta_top = 118; break;
+        case 'institution': delta_top = 170; break;
+        case 'subscription': delta_top = 265; break;
+        case 'category': delta_top = 325; break;
         default: delta_top = 0;
       }
 
