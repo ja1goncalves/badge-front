@@ -4,17 +4,22 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Instalation
 
+Antes de instalar a aplicação é necessário ter o node.js instalado na máquina.
+
+Segue alguns comandos que possam ser necessário na instalação da aplicação Front-end.
+Ela consome uma [API Back-End específica](https://github.com/ja1goncalves/badge-back)
+
 ```bash
 sudo npm install
 sudo npm i @angular/cli -g
 sudo npm install popper.js@^1.14.7
 sudo npm install jquery --save
 sudo npm install bootstrap
-sudo npm install angular-alert-module
+sudo npm install angular-notifier
 ```
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `sudo ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
