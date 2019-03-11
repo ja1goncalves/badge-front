@@ -19,7 +19,7 @@ sudo npm install angular-notifier
 ```
 ## Development server
 
-Para rodar o provejo, há uma linha especial no arquivo src/app/personalize-badge/personalize-badge.component.ts que é a:
+Para rodar o provejo, há uma linha especial no arquivo [personalize-badge.component.ts](https://github.com/ja1goncalves/badge-front/blob/master/src/app/personalize-badge/personalize-badge.component.ts) que é a:
 
 ```bash
 ...
