@@ -80,7 +80,7 @@ export class PersonalizeBadgeComponent implements OnInit {
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        $('#img-badge').attr('src', e.target.result);
+        // $('#img-badge').attr('src', e.target.result);
       };
 
       reader.readAsDataURL(input.files[0]);

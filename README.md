@@ -19,7 +19,28 @@ sudo npm install angular-notifier
 ```
 ## Development server
 
-Run `sudo ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Para rodar o provejo, há uma linha especial no arquivo src/app/personalize-badge/personalize-badge.component.ts que é a:
+
+```bash
+...
+82    reader.onload = function (e) {
+83        // $('#img-badge').attr('src', e.target.result);
+82    };
+...
+```
+
+Primeiro você sobe a aplicação com o `sudo ng serve`, depois que o porcesso estiver completo, tire o comentario da linha deixando ela da seguinte forma:
+
+
+```bash
+...
+82    reader.onload = function (e) {
+83        $('#img-badge').attr('src', e.target.result);
+82    };
+...
+```
+
+E aperte Ctrl+S para salvar o projeto e o próprio Angular irá recompilar o projeto. E ele irá funcionar completamente da maneira certa!
 
 ## Code scaffolding
 
